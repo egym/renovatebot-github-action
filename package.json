@@ -13,17 +13,18 @@
   },
   "license": "GPL-3.0-or-later",
   "author": "Jeroen de Bruijn",
+  "type": "module",
   "main": "src/index.ts",
   "scripts": {
     "build": "run-s clean compile",
     "clean": "rimraf dist/",
-    "compile": "ncc build -o dist --target es2021",
+    "compile": "node tools/compile.js",
     "lint": "run-s lint-es prettier",
+    "lint:fix": "run-s lint-es:fix prettier-fix",
     "lint-es": "eslint .",
     "lint-es:file": "eslint",
     "lint-es:file:fix": "eslint --fix",
     "lint-es:fix": "eslint --fix .",
-    "lint:fix": "run-s lint-es:fix prettier-fix",
     "prepare": "husky",
     "prettier": "prettier --cache --check --ignore-unknown \"{**/*,*}.*\"",
     "prettier-fix": "prettier --cache --write --ignore-unknown \"{**/*,*}.*\"",
@@ -32,48 +33,39 @@
     "start": "run-s build && node dist"
   },
   "dependencies": {
-    "@actions/core": "1.10.1",
-    "@actions/exec": "1.1.1"
+    "@actions/core": "3.0.0",
+    "@actions/exec": "3.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "18.6.1",
-    "@commitlint/config-conventional": "18.6.3",
+    "@commitlint/cli": "20.5.0",
+    "@commitlint/config-conventional": "20.5.0",
+    "@eslint/js": "9.39.4",
     "@semantic-release/git": "10.0.1",
-    "@semantic-release/github": "9.2.6",
-    "@semantic-release/npm": "11.0.3",
-    "@tsconfig/node20": "20.1.4",
-    "@types/node": "20.12.2",
-    "@typescript-eslint/eslint-plugin": "6.21.0",
-    "@typescript-eslint/parser": "6.21.0",
-    "@vercel/ncc": "0.38.1",
-    "conventional-changelog-conventionalcommits": "7.0.2",
-    "eslint": "8.57.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-json": "3.1.0",
-    "husky": "9.0.11",
-    "lint-staged": "15.2.2",
-    "npm-run-all2": "6.1.2",
-    "prettier": "3.2.5",
-    "prettier-plugin-packagejson": "2.4.12",
-    "rimraf": "5.0.5",
-    "semantic-release": "23.0.6",
-    "ts-node": "10.9.2",
-    "typescript": "5.4.3"
+    "@semantic-release/github": "12.0.6",
+    "@semantic-release/npm": "13.1.5",
+    "@tsconfig/node24": "24.0.4",
+    "@tsconfig/strictest": "2.0.8",
+    "@types/eslint-config-prettier": "6.11.3",
+    "@types/node": "24.12.2",
+    "conventional-changelog-conventionalcommits": "9.3.1",
+    "esbuild": "0.28.0",
+    "eslint": "9.39.4",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-json": "4.0.1",
+    "globals": "17.4.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.4.0",
+    "npm-run-all2": "8.0.4",
+    "prettier": "3.8.1",
+    "prettier-plugin-packagejson": "3.0.2",
+    "rimraf": "6.1.3",
+    "semantic-release": "25.0.3",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.58.1"
   },
-  "packageManager": "pnpm@8.15.6",
+  "packageManager": "pnpm@10.33.0",
   "engines": {
-    "node": ">=20.9.0",
-    "pnpm": "^8.0.0"
-  },
-  "pnpm": {
-    "supportedArchitectures": {
-      "os": [
-        "linux",
-        "win32"
-      ],
-      "cpu": [
-        "x64"
-      ]
-    }
+    "node": ">=24.11.0",
+    "pnpm": "^10.0.0"
   }
 }
